@@ -46,8 +46,8 @@ This function returns a list of the following objects:
 This function is implemented to variable of interest \eqn{(y)} that assumed to be a Negative Binomial Distribution. The data is a number of the Bernoulli process. The negative binomial is used to overcome an over dispersion from the discrete model.
 }
 \examples{
-\donttest{
-#Data Generation
+
+##Data Generation
 set.seed(123)
 library(MASS)
 m=30
@@ -64,32 +64,32 @@ dataNegativeBinomialNs$y[c(3,14,22,29,30)] <- NA
 dataNegativeBinomialNs$vardir[c(3,14,22,29,30)] <- NA
 
 
-#Compute Fitted Model
-#y ~ x
+## Compute Fitted Model
+## y ~ x
 
 
 ## For data without any nonsampled area
 
-formula = y ~ x
-v= c(1,1)
-c= c(0,0)
-dat = dataNegativeBinomial
+#formula = y ~ x
+#v= c(1,1)
+#c= c(0,0)
+#dat = dataNegativeBinomial
 
-# Using parameter coef and var.coef
-saeHBNegbin <- NegativeBinomial(formula,coef=c,var.coef=v,iter.update=10,data =dat)
+## Using parameter coef and var.coef
+#saeHBNegbin <- NegativeBinomial(formula,coef=c,var.coef=v,iter.update=10,data =dat)
 
-saeHBNegbin$Est                                 #Small Area mean Estimates
-saeHBNegbin$refVar                              #Random effect variance
-saeHBNegbin$coefficient                         #coefficient
+#saeHBNegbin$Est                                 #Small Area mean Estimates
+#saeHBNegbin$refVar                              #Random effect variance
+#saeHBNegbin$coefficient                         #coefficient
 #Load Library 'coda' to execute the plot
 #autocorr.plot(saeHBNegbin$plot[[3]]) is used to generate ACF Plot
 #plot(saeHBNegbin$plot[[3]]) is used to generate Density and trace plot
 
-# Do not using parameter coef and var.coef
-saeHBNegbin <- NegativeBinomial(formula,data =dat)
+## Do not using parameter coef and var.coef
+#saeHBNegbin <- NegativeBinomial(formula,data =dat)
 
 
 
 ## For data with nonsampled area use dataNegativeBinomialNs
-}
+
 }

@@ -19,8 +19,8 @@
 #' @export PoissonGamma
 #'
 #' @examples
-#' \donttest{
-#' #Load Dataset
+#'
+#' ##Load Dataset
 #' library(CARBayesdata)
 #' data(lipdata)
 #' dataPoissonGamma <- lipdata
@@ -28,36 +28,36 @@
 #' dataPoissonGammaNs$observed[c(2,9,15,23,40)] <- NA
 #'
 #'
-#' #Compute Fitted Model
-#' #observed ~ pcaff
+#' ##Compute Fitted Model
+#' ##observed ~ pcaff
 #'
 #'
 #' ## For data without any nonsampled area
 #'
-#' formula = observed ~ pcaff
-#' v= c(1,1)
-#' c = c(0,0)
-#' dat = dataPoissonGamma
+#' #formula = observed ~ pcaff
+#' #v= c(1,1)
+#' #c = c(0,0)
+#' #dat = dataPoissonGamma
 #'
 #'
-#' # Using parameter coef and var.coef
-#' saeHBPoissonGamma <- PoissonGamma(formula,coef=c,var.coef=v,iter.update=10,data=dat)
+#' ## Using parameter coef and var.coef
+#' #saeHBPoissonGamma <- PoissonGamma(formula,coef=c,var.coef=v,iter.update=10,data=dat)
 #'
-#' saeHBPoissonGamma$Est                                 #Small Area mean Estimates
-#' saeHBPoissonGamma$refVar                              #Random effect variance
-#' saeHBPoissonGamma$coefficient                         #coefficient
+#' #saeHBPoissonGamma$Est                                 #Small Area mean Estimates
+#' #saeHBPoissonGamma$refVar                              #Random effect variance
+#' #saeHBPoissonGamma$coefficient                         #coefficient
 #' #Load Library 'coda' to execute the plot
 #' #autocorr.plot(saeHBPoissonGamma$plot[[3]]) is used to generate ACF Plot
 #' #plot(saeHBPoissonGamma$plot[[3]]) is used to generate Density and trace plot
 #'
-#' # Do not using parameter coef and var.coef
-#' saeHBPoissonGamma <- PoissonGamma(formula,data=dataPoissonGamma)
+#' ## Do not using parameter coef and var.coef
+#' #saeHBPoissonGamma <- PoissonGamma(formula,data=dataPoissonGamma)
 #'
 #'
 #'
 #' ## For data with nonsampled area use dataPoissonGammaNs
 #'
-#' }
+#'
 PoissonGamma <- function(formula,iter.update=3, iter.mcmc=10000, coef, var.coef, thin = 2, burn.in =2000, tau.u = 1, data){
 
 

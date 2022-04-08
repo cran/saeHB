@@ -49,7 +49,7 @@ This function returns a list of the following objects:
 This function is implemented to variable of interest \eqn{(y)} that assumed to be a Normal Distribution. The range of data is \eqn{(-\infty < y < \infty)}
 }
 \examples{
-\donttest{
+
 #Data Generation
 set.seed(123)
 m=30
@@ -68,33 +68,33 @@ dataNormalNs$y[c(3,10,15,29,30)] <- NA
 dataNormalNs$vardir[c(3,10,15,29,30)] <- NA
 
 
-#Compute Fitted Model
-#y ~ x1 +x2 +x3 +x4
+##Compute Fitted Model
+##y ~ x1 +x2 +x3 +x4
 
 
 ## For data without any nonsampled area
-formula=y~x1+x2+x3+x4
-var= "vardir"
-v = c(1,1,1,1,1)
-c= c(0,0,0,0,0)
+#formula=y~x1+x2+x3+x4
+#var= "vardir"
+#v = c(1,1,1,1,1)
+#c= c(0,0,0,0,0)
 
 
-# Using parameter coef and var.coef
-saeHBnormal<-Normal(formula,vardir=var,coef=c,var.coef=v,data=dataNormal)
+## Using parameter coef and var.coef
+#saeHBnormal<-Normal(formula,vardir=var,coef=c,var.coef=v,data=dataNormal)
 
-saeHBnormal$Est                                 #Small Area mean Estimates
-saeHBnormal$refVar                              #Random effect variance
-saeHBnormal$coefficient                         #coefficient
+#saeHBnormal$Est                                 #Small Area mean Estimates
+#saeHBnormal$refVar                              #Random effect variance
+#saeHBnormal$coefficient                         #coefficient
 #Load Library 'coda' to execute the plot
 #autocorr.plot(saeHBnormal$plot[[3]]) is used to generate ACF Plot
 #plot(saeHBnormal$plot[[3]]) is used to generate Density and trace plot
 
-# Do not using parameter coef and var.coef
-saeHBnormal<-Normal(formula,vardir ="vardir",data=dataNormal)
+## Do not using parameter coef and var.coef
+#saeHBnormal<-Normal(formula,vardir ="vardir",data=dataNormal)
 
 
 
 ## For data with nonsampled area use dataNormalNs
 
-}
+
 }

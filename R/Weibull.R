@@ -19,8 +19,8 @@
 #' @export Weibull
 #'
 #' @examples
-#' \donttest{
-#' #Data Generation
+#'
+#' ##Data Generation
 #' set.seed(123)
 #' m=30
 #' x=runif(m,0,1)
@@ -38,36 +38,35 @@
 #' dataWeibullNs$vardir[c(3,14,22,29,30)] <- NA
 #'
 #'
-#' #Compute Fitted Model
-#' #y ~ x
+#' ##Compute Fitted Model
+#' ##y ~ x
 #'
 #'
 #' ## For data without any nonsampled area
 #'
-#' formula = y ~ x
-#' var.coef = c(1,1)
-#' coef = c(0,0)
+#' #formula = y ~ x
+#' #var.coef = c(1,1)
+#' #coef = c(0,0)
 #'
 #'
-#' # Using parameter coef and var.coef
-#' saeHBWeibull <- Weibull(formula,coef=coef,var.coef=var.coef,iter.update=10,data=dataWeibull)
-#' #This example use only 10 observations to make the example execution time be faster
+#' ## Using parameter coef and var.coef
+#' #saeHBWeibull <- Weibull(formula,coef=coef,var.coef=var.coef,iter.update=10,data=dataWeibull)
 #'
-#' saeHBWeibull$Est                                 #Small Area mean Estimates
-#' saeHBWeibull$refVar                              #Random effect variance
-#' saeHBWeibull$coefficient                         #coefficient
+#' #saeHBWeibull$Est                                 #Small Area mean Estimates
+#' #saeHBWeibull$refVar                              #Random effect variance
+#' #saeHBWeibull$coefficient                         #coefficient
 #' #Load Library 'coda' to execute the plot
 #' #autocorr.plot(saeHBWeibull$plot[[3]]) is used to generate ACF Plot
 #' #plot(saeHBWeibull$plot[[3]]) is used to generate Density and trace plot
 #'
-#' # Do not using parameter coef and var.coef
-#' saeHBWeibull <- Weibull(formula, data=dataWeibull)
+#' ## Do not using parameter coef and var.coef
+#' #saeHBWeibull <- Weibull(formula, data=dataWeibull)
 #'
 #'
 #'
 #' ## For data with nonsampled area use dataWeibullNs
 #'
-#'}
+#'
 
 Weibull <- function(formula,iter.update=3, iter.mcmc=10000, coef, var.coef, thin = 2, burn.in =2000, tau.u = 1, data){
 

@@ -19,7 +19,7 @@
 #' @export Beta
 #'
 #' @examples
-#' \donttest{
+#'
 #' #Data Generation
 #' set.seed(123)
 #' m=30
@@ -44,31 +44,31 @@
 #' dataBetaNs$vardir[c(3,14,22,29,30)] <- NA
 #'
 #'
-#' #Compute Fitted Model
-#' #y ~ x1 +x2
+#' ##Compute Fitted Model
+#' ##y ~ x1 +x2
 #'
 #'
 #' ## For data without any nonsampled area
 #'
-#' vc = c(1,1,1)
-#' c = c(0,0,0)
-#' formula = y~x1+x2
-#' dat = dataBeta
+#' #vc = c(1,1,1)
+#' #c = c(0,0,0)
+#' #formula = y~x1+x2
+#' #dat = dataBeta[1:10,]
 #'
 #'
-#' # Using parameter coef and var.coef
-#' saeHBbeta<-Beta(formula,var.coef=vc,coef=c,data=dat)
+#' ##Using parameter coef and var.coef
+#' #saeHBbeta<-Beta(formula,var.coef=vc,iter.update=10,coef=c,data=dat)
 #'
-#' saeHBbeta$Est                                 #Small Area mean Estimates
-#' saeHBbeta$refVar                              #Random effect variance
-#' saeHBbeta$coefficient                         #coefficient
+#' #saeHBbeta$Est                                 #Small Area mean Estimates
+#' #saeHBbeta$refVar                              #Random effect variance
+#' #saeHBbeta$coefficient                         #coefficient
 #' #Load Library 'coda' to execute the plot
 #' #autocorr.plot(saeHBbeta$plot[[3]]) is used to generate ACF Plot
 #' #plot(saeHBbeta$plot[[3]]) is used to generate Density and trace plot
 #'
-#' #Do not use parameter coef and var.coef
-#' saeHBbeta <- Beta(formula,data=dataBeta)
-#' }
+#' ##Do not use parameter coef and var.coef
+#' #saeHBbeta <- Beta(formula,data=dataBeta)
+#'
 
 Beta <- function(formula, iter.update=3, iter.mcmc=10000,coef, var.coef, thin = 3, burn.in =2000, tau.u = 1, data){
 

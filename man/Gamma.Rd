@@ -46,8 +46,8 @@ This function returns a list of the following objects:
 This function is implemented to variable of interest \eqn{(y)} that assumed to be a Gamma Distribution. The range of data is \eqn{( y > 0)}
 }
 \examples{
-\donttest{
-#Data Generation
+
+##Data Generation
 set.seed(123)
 m=30
 x1=runif(m,0,1)
@@ -67,31 +67,31 @@ dataGammaNs$y[c(3,14,22,29,30)] <- NA
 dataGammaNs$vardir[c(3,14,22,29,30)] <- NA
 
 
-#Compute Fitted Model
-#y ~ x1 +x2
+##Compute Fitted Model
+##y ~ x1 +x2
 
 
 ## For data without any nonsampled area
-formula = y ~ x1 +x2
-v = c(1,1,1)
-c = c(0,0,0)
+#formula = y ~ x1 +x2
+#v = c(1,1,1)
+#c = c(0,0,0)
 
 
-# Using parameter coef and var.coef
-saeHBGamma <- Gamma(formula,coef=c,var.coef=v,iter.update=10,data =  dataGamma)
+## Using parameter coef and var.coef
+#saeHBGamma <- Gamma(formula,coef=c,var.coef=v,iter.update=10,data =dataGamma)
 
-saeHBGamma$Est                                 #Small Area mean Estimates
-saeHBGamma$refVar                              #Random effect variance
-saeHBGamma$coefficient                         #coefficient
+#saeHBGamma$Est                                 #Small Area mean Estimates
+#saeHBGamma$refVar                              #Random effect variance
+#saeHBGamma$coefficient                         #coefficient
 #Load Library 'coda' to execute the plot
 #autocorr.plot(saeHBGamma$plot[[3]]) is used to generate ACF Plot
 #plot(saeHBGamma$plot[[3]]) is used to generate Density and trace plot
 
-# Do not using parameter coef and var.coef
-saeHBGamma <- Gamma(formula, data =  dataGamma)#'
+## Do not using parameter coef and var.coef
+#saeHBGamma <- Gamma(formula, data =  dataGamma)#'
 
 
 ## For data with nonsampled area use dataGammaNs
 
-}
+
 }
