@@ -20,6 +20,7 @@
 #' @export Poisson
 #'
 #' @examples
+#' \donttest{
 #'
 #' ##Load Dataset
 #' library(CARBayesdata)
@@ -30,34 +31,34 @@
 #'
 #'
 #' ##Compute Fitted Model
-#' ##observed ~ pcaff
+#' #observed ~ pcaff
 #'
 #'
 #' ## For data without any nonsampled area
 #'
-#' #formula = observed ~ pcaff
-#' #v = c(1,1)
-#' #c = c(0,0)
+#' formula = observed ~ pcaff
+#' v = c(1,1)
+#' c = c(0,0)
 #'
 #'
 #' ## Using parameter coef and var.coef
-#' #saeHBPoisson <- Poisson(formula, coef=c,var.coef=v,iter.update=10,data=dataPoisson)
+#' saeHBPoisson <- Poisson(formula, coef=c,var.coef=v,iter.update=10,data=dataPoisson)
 #'
-#' #saeHBPoisson$Est                                 #Small Area mean Estimates
-#' #saeHBPoisson$refVar                              #Random effect variance
-#' #saeHBPoisson$coefficient                         #coefficient
+#' saeHBPoisson$Est                                 #Small Area mean Estimates
+#' saeHBPoisson$refVar                              #Random effect variance
+#' saeHBPoisson$coefficient                         #coefficient
 #' #Load Library 'coda' to execute the plot
 #' #autocorr.plot(saeHBPoisson$plot[[3]]) is used to generate ACF Plot
 #' #plot(saeHBPoisson$plot[[3]]) is used to generate Density and trace plot
 #'
 #' ## Do not using parameter coef and var.coef
-#' #saeHBPoisson <- Poisson(formula,data=dataPoisson)
+#' saeHBPoisson <- Poisson(formula,data=dataPoisson)
 #'
 #'
 #'
 #' ## For data with nonsampled area use dataPoissonNs
 #'
-#'
+#' }
 
 Poisson <- function(formula,iter.update=3, iter.mcmc=10000, coef, var.coef, thin = 2, burn.in =2000,tau.u = 1, data){
 

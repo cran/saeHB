@@ -50,6 +50,7 @@ This function is implemented to variable of interest \eqn{(y)} that assumed to b
 }
 \examples{
 
+\donttest{
 #Data Generation
 set.seed(123)
 m=30
@@ -73,31 +74,31 @@ dataBinomialNs$n.samp[c(3,14,22,29,30)] <- NA
 
 
 ## For data without any nonsampled area
-#formula = y~x1+x2
-#n.s = "n.samp"
-#vc = c(1,1,1)
-#c = c(0,0,0)
-#dat = dataBinomial
+formula = y~x1+x2
+n.s = "n.samp"
+vc = c(1,1,1)
+c = c(0,0,0)
+dat = dataBinomial
 
 
 ## Using parameter coef and var.coef
-#saeHBBinomial<-Binomial(formula,n.samp=n.s,iter.update=10,coef=c,var.coef=vc,data =dat)
+saeHBBinomial<-Binomial(formula,n.samp=n.s,iter.update=10,coef=c,var.coef=vc,data =dat)
 
-#saeHBBinomial$Est                                 #Small Area mean Estimates
-#saeHBBinomial$refVar                              #Random effect variance
-#saeHBBinomial$coefficient                         #coefficient
+saeHBBinomial$Est                                 #Small Area mean Estimates
+saeHBBinomial$refVar                              #Random effect variance
+saeHBBinomial$coefficient                         #coefficient
 #Load Library 'coda' to execute the plot
 #autocorr.plot(saeHBBinomial$plot[[3]]) is used to generate ACF Plot
 #plot(saeHBBinomial$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-#saeHBBinomial <- Binomial(formula,n.samp ="n.samp",data=dataBinomial)
+saeHBBinomial <- Binomial(formula,n.samp ="n.samp",data=dataBinomial)
 
 
 
 ## For data with nonsampled area use dataBinomialNs
 
-
+}
 }
 \author{
 Azka Ubaidillah [aut], Ika Yuni Wulansari [aut], Zaza Yuda Perwira [aut, cre], Jayanti Wulansari [aut, cre], Fauzan Rais Arfizain [aut,cre]

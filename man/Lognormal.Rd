@@ -46,7 +46,7 @@ This function returns a list of the following objects:
 This function is implemented to variable of interest \eqn{(y)} that assumed to be a Lognormal Distribution. The range of data is \eqn{(y > 0}
 }
 \examples{
-
+\donttest{
 ##Data Generation
 set.seed(123)
 m=30
@@ -72,26 +72,27 @@ dataLognormalNs$vardir[c(3,14,22,29,30)] <- NA
 
 ## For data without any nonsampled area
 
-#formula = y ~ x1 +x2 +x3
-#v = c(1,1,1,1)
-#c= c(0,0,0,0)
+formula = y ~ x1 +x2 +x3
+v = c(1,1,1,1)
+c= c(0,0,0,0)
 
 
 ## Using parameter coef and var.coef
-#saeHBLognormal <- Lognormal(formula,coef=c,var.coef=v,iter.update=10,data=dataLognormal)
+saeHBLognormal <- Lognormal(formula,coef=c,var.coef=v,iter.update=10,data=dataLognormal)
 
-#saeHBLognormal$Est                                 #Small Area mean Estimates
-#saeHBLognormal$refVar                              #Random effect variance
-#saeHBLognormal$coefficient                         #coefficient
+saeHBLognormal$Est                                 #Small Area mean Estimates
+saeHBLognormal$refVar                              #Random effect variance
+saeHBLognormal$coefficient                         #coefficient
 #Load Library 'coda' to execute the plot
 #autocorr.plot(saeHBLognormal$plot[[3]]) is used to generate ACF Plot
 #plot(saeHBLognormal$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-#saeHBLognormal <- Lognormal(formula,data=dataLognormal)
+saeHBLognormal <- Lognormal(formula,data=dataLognormal)
 
 
 ## For data with nonsampled area use dataLognormalNs
 
+}
 
 }

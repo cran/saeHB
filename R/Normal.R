@@ -20,7 +20,7 @@
 #' @export Normal
 #'
 #' @examples
-#'
+#' \donttest{
 #' #Data Generation
 #' set.seed(123)
 #' m=30
@@ -44,30 +44,30 @@
 #'
 #'
 #' ## For data without any nonsampled area
-#' #formula=y~x1+x2+x3+x4
-#' #var= "vardir"
-#' #v = c(1,1,1,1,1)
-#' #c= c(0,0,0,0,0)
+#' formula=y~x1+x2+x3+x4
+#' var= "vardir"
+#' v = c(1,1,1,1,1)
+#' c= c(0,0,0,0,0)
 #'
 #'
 #' ## Using parameter coef and var.coef
-#' #saeHBnormal<-Normal(formula,vardir=var,coef=c,var.coef=v,data=dataNormal)
+#' saeHBnormal<-Normal(formula,vardir=var,coef=c,var.coef=v,data=dataNormal)
 #'
-#' #saeHBnormal$Est                                 #Small Area mean Estimates
-#' #saeHBnormal$refVar                              #Random effect variance
-#' #saeHBnormal$coefficient                         #coefficient
+#' saeHBnormal$Est                                 #Small Area mean Estimates
+#' saeHBnormal$refVar                              #Random effect variance
+#' saeHBnormal$coefficient                         #coefficient
 #' #Load Library 'coda' to execute the plot
 #' #autocorr.plot(saeHBnormal$plot[[3]]) is used to generate ACF Plot
 #' #plot(saeHBnormal$plot[[3]]) is used to generate Density and trace plot
 #'
 #' ## Do not using parameter coef and var.coef
-#' #saeHBnormal<-Normal(formula,vardir ="vardir",data=dataNormal)
+#' saeHBnormal<-Normal(formula,vardir ="vardir",data=dataNormal)
 #'
 #'
 #'
 #' ## For data with nonsampled area use dataNormalNs
 #'
-#'
+#' }
 Normal<- function(formula, vardir, iter.update=3, iter.mcmc=10000, coef, var.coef, thin = 2, burn.in =2000, tau.u = 1, data){
 
 

@@ -46,7 +46,7 @@ This function returns a list of the following objects:
 This function is implemented to variable of interest \eqn{(y)} that assumed to be a Double Exponential Distribution or Laplace Distribution. The range of data is \eqn{(-\infty < y < \infty)}
 }
 \examples{
-
+\donttest{
 ##Data Generation
 set.seed(123)
 library(nimble)
@@ -71,29 +71,29 @@ dataExpDoubleNs$vardir[c(3,14,22,29,30)] <- NA
 
 
 ## For data without any nonsampled area
-#formula = y ~ x1+x2
-#vc = c(1,1,1)
-#c = c(0,0,0)
-#dat = dataExpDouble[1:10,]
+formula = y ~ x1+x2
+vc = c(1,1,1)
+c = c(0,0,0)
+dat = dataExpDouble[1:10,]
 
 
 ## Using parameter coef and var.coef
 
-#saeHBExpDouble<-ExponentialDouble(formula,coef=c,var.coef=vc,iter.update=10,data=dat)
+saeHBExpDouble<-ExponentialDouble(formula,coef=c,var.coef=vc,iter.update=10,data=dat)
 
-#saeHBExpDouble$Est                                 #Small Area mean Estimates
-#saeHBExpDouble$refVar                              #Random effect variance
-#saeHBExpDouble$coefficient                         #coefficient
+saeHBExpDouble$Est                                 #Small Area mean Estimates
+saeHBExpDouble$refVar                              #Random effect variance
+saeHBExpDouble$coefficient                         #coefficient
 #Load Library 'coda' to execute the plot
 #autocorr.plot(saeHBExpDouble$plot[[3]]) is used to generate ACF Plot
 #plot(saeHBExpDouble$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-#saeHBExpDouble <- ExponentialDouble(formula,data=dataExpDouble)
+saeHBExpDouble <- ExponentialDouble(formula,data=dataExpDouble)
 
 
 
 ## For data with nonsampled area use dataExpDoubleNs
 
-
+}
 }

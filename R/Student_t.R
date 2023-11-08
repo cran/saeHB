@@ -19,7 +19,7 @@
 #' @export Student_t
 #'
 #' @examples
-#'
+#' \donttest{
 #' ##Data Generation
 #' set.seed(123)
 #' m=30
@@ -44,29 +44,29 @@
 #'
 #' ## For data without any nonsampled area
 #'
-#' #formula =  y ~ x1+x2
-#' #var.coef = c(1,1,1)
-#' #coef = c(0,0,0)
+#' formula =  y ~ x1+x2
+#' var.coef = c(1,1,1)
+#' coef = c(0,0,0)
 #'
 #'
 #' ## Using parameter coef and var.coef
-#' #saeHBt <- Student_t(formula,coef=coef,var.coef=var.coef,iter.update=10,data = datat)
+#' saeHBt <- Student_t(formula,coef=coef,var.coef=var.coef,iter.update=10,data = datat)
 #'
-#' #saeHBt$Est                                 #Small Area mean Estimates
-#' #saeHBt$refVar                              #Random effect variance
-#' #saeHBt$coefficient                         #coefficient
+#' saeHBt$Est                                 #Small Area mean Estimates
+#' saeHBt$refVar                              #Random effect variance
+#' saeHBt$coefficient                         #coefficient
 #' #Load Library 'coda' to execute the plot
 #' #autocorr.plot(saeHBt$plot[[3]]) is used to generate ACF Plot
 #' #plot(saeHBt$plot[[3]]) is used to generate Density and trace plot
 #'
 #' ## Do not using parameter coef and var.coef
-#' #saeHBt <- Student_t(formula,data = datat)
+#' saeHBt <- Student_t(formula,data = datat)
 #'
 #'
 #'
 #' ## For data with nonsampled area use datatNs
 #'
-#'
+#' }
 
 Student_t <- function(formula,iter.update=3, iter.mcmc=10000,coef, var.coef, thin = 2, burn.in =2000, tau.u = 1, data){
 

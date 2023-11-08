@@ -47,6 +47,7 @@ This function is implemented to variable of interest \eqn{(y)} that assumed to b
 }
 \examples{
 
+\donttest{
 ##Load Dataset
 library(CARBayesdata)
 data(lipdata)
@@ -61,28 +62,28 @@ dataPoissonGammaNs$observed[c(2,9,15,23,40)] <- NA
 
 ## For data without any nonsampled area
 
-#formula = observed ~ pcaff
-#v= c(1,1)
-#c = c(0,0)
-#dat = dataPoissonGamma
+formula = observed ~ pcaff
+v= c(1,1)
+c = c(0,0)
+dat = dataPoissonGamma
 
 
 ## Using parameter coef and var.coef
-#saeHBPoissonGamma <- PoissonGamma(formula,coef=c,var.coef=v,iter.update=10,data=dat)
+saeHBPoissonGamma <- PoissonGamma(formula,coef=c,var.coef=v,iter.update=10,data=dat)
 
-#saeHBPoissonGamma$Est                                 #Small Area mean Estimates
-#saeHBPoissonGamma$refVar                              #Random effect variance
-#saeHBPoissonGamma$coefficient                         #coefficient
+saeHBPoissonGamma$Est                                 #Small Area mean Estimates
+saeHBPoissonGamma$refVar                              #Random effect variance
+saeHBPoissonGamma$coefficient                         #coefficient
 #Load Library 'coda' to execute the plot
 #autocorr.plot(saeHBPoissonGamma$plot[[3]]) is used to generate ACF Plot
 #plot(saeHBPoissonGamma$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-#saeHBPoissonGamma <- PoissonGamma(formula,data=dataPoissonGamma)
+saeHBPoissonGamma <- PoissonGamma(formula,data=dataPoissonGamma)
 
 
 
 ## For data with nonsampled area use dataPoissonGammaNs
 
-
+}
 }

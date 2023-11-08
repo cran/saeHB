@@ -22,6 +22,7 @@
 #'
 #' @examples
 #'
+#' \donttest{
 #' #Data Generation
 #' set.seed(123)
 #' m=30
@@ -45,31 +46,31 @@
 #'
 #'
 #' ## For data without any nonsampled area
-#' #formula = y~x1+x2
-#' #n.s = "n.samp"
-#' #vc = c(1,1,1)
-#' #c = c(0,0,0)
-#' #dat = dataBinomial
+#' formula = y~x1+x2
+#' n.s = "n.samp"
+#' vc = c(1,1,1)
+#' c = c(0,0,0)
+#' dat = dataBinomial
 #'
 #'
 #' ## Using parameter coef and var.coef
-#' #saeHBBinomial<-Binomial(formula,n.samp=n.s,iter.update=10,coef=c,var.coef=vc,data =dat)
+#' saeHBBinomial<-Binomial(formula,n.samp=n.s,iter.update=10,coef=c,var.coef=vc,data =dat)
 #'
-#' #saeHBBinomial$Est                                 #Small Area mean Estimates
-#' #saeHBBinomial$refVar                              #Random effect variance
-#' #saeHBBinomial$coefficient                         #coefficient
+#' saeHBBinomial$Est                                 #Small Area mean Estimates
+#' saeHBBinomial$refVar                              #Random effect variance
+#' saeHBBinomial$coefficient                         #coefficient
 #' #Load Library 'coda' to execute the plot
 #' #autocorr.plot(saeHBBinomial$plot[[3]]) is used to generate ACF Plot
 #' #plot(saeHBBinomial$plot[[3]]) is used to generate Density and trace plot
 #'
 #' ## Do not using parameter coef and var.coef
-#' #saeHBBinomial <- Binomial(formula,n.samp ="n.samp",data=dataBinomial)
+#' saeHBBinomial <- Binomial(formula,n.samp ="n.samp",data=dataBinomial)
 #'
 #'
 #'
 #' ## For data with nonsampled area use dataBinomialNs
 #'
-#'
+#' }
 Binomial <- function(formula, n.samp, iter.update=3, iter.mcmc=10000,coef, var.coef,thin = 2, burn.in =2000, tau.u = 1, data){
 
 
