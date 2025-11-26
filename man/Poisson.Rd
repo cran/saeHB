@@ -48,42 +48,41 @@ This function is implemented to variable of interest \eqn{(y)} that assumed to b
 \examples{
 \donttest{
 
-##Load Dataset
+## Load Dataset
 library(CARBayesdata)
 data(lipdata)
 dataPoisson <- lipdata
 dataPoissonNs <- lipdata
-dataPoissonNs$observed[c(2,9,15,23,40)] <- NA
+dataPoissonNs$observed[c(2, 9, 15, 23, 40)] <- NA
 
 
-##Compute Fitted Model
-#observed ~ pcaff
+## Compute Fitted Model
+# observed ~ pcaff
 
 
 ## For data without any nonsampled area
 
-formula = observed ~ pcaff
-v = c(1,1)
-c = c(0,0)
+formula <- observed ~ pcaff
+v <- c(1, 1)
+c <- c(0, 0)
 
 
 ## Using parameter coef and var.coef
-saeHBPoisson <- Poisson(formula, coef=c,var.coef=v,iter.update=10,data=dataPoisson)
+saeHBPoisson <- Poisson(formula, coef = c, var.coef = v, iter.update = 10, data = dataPoisson)
 
-saeHBPoisson$Est                                 #Small Area mean Estimates
-saeHBPoisson$refVar                              #Random effect variance
-saeHBPoisson$coefficient                         #coefficient
-#Load Library 'coda' to execute the plot
-#autocorr.plot(saeHBPoisson$plot[[3]]) is used to generate ACF Plot
-#plot(saeHBPoisson$plot[[3]]) is used to generate Density and trace plot
+saeHBPoisson$Est # Small Area mean Estimates
+saeHBPoisson$refVar # Random effect variance
+saeHBPoisson$coefficient # coefficient
+# Load Library 'coda' to execute the plot
+# autocorr.plot(saeHBPoisson$plot[[3]]) is used to generate ACF Plot
+# plot(saeHBPoisson$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-saeHBPoisson <- Poisson(formula,data=dataPoisson)
+saeHBPoisson <- Poisson(formula, data = dataPoisson)
 
 
 
 ## For data with nonsampled area use dataPoissonNs
-
 }
 }
 \author{

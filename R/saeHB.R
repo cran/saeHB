@@ -24,7 +24,7 @@
 #'   \item{\code{Student_t}}{Produces HB estimators, standard error, random effect variance, coefficient and plot under student-t distribution}
 #'   \item{\code{Student_tnc}}{Produces HB estimators, standard error, random effect variance, coefficient and plot under student-t (not central) distribution}
 #'   \item{\code{Weibull}}{Produces HB estimators, standard error, random effect variance, coefficient and plot under weibull distribution}
-#'}
+#' }
 #'
 #' @section Reference:
 #' \itemize{
@@ -32,8 +32,6 @@
 #' }
 #'
 #'
-#' @docType package
-#' @name saeHB
 #'
 #' @import rjags
 #' @import coda
@@ -41,5 +39,4 @@
 #' @import stats
 #' @import grDevices
 #' @import graphics
-
-NULL
+"_PACKAGE"

@@ -47,53 +47,51 @@ This function is implemented to variable of interest \eqn{(y)} that assumed to b
 }
 \examples{
 \donttest{
-##Data Generation
+## Data Generation
 set.seed(123)
-library(nimble)
-m=30
-x1=runif(m,10,20)
-x2=runif(m,1,10)
-b0=b1=b2=0.5
-u=rnorm(m,0,1)
-tau=rgamma(m,1,1)
-sd=1/sqrt(tau)
-mu=b0 + b1*x1+b2*x2+u
-y=rdexp(m,mu,sd)
-vardir=sqrt(2)*sd^2
-dataExpDouble=as.data.frame(cbind(y,x1,x2,vardir))
-dataExpDoubleNs=dataExpDouble
-dataExpDoubleNs$y[c(3,14,22,29,30)] <- NA
-dataExpDoubleNs$vardir[c(3,14,22,29,30)] <- NA
+m <- 30
+x1 <- runif(m, 10, 20)
+x2 <- runif(m, 1, 10)
+b0 <- b1 <- b2 <- 0.5
+u <- rnorm(m, 0, 1)
+tau <- rgamma(m, 1, 1)
+sd <- 1 / sqrt(tau)
+mu <- b0 + b1 * x1 + b2 * x2 + u
+y <- nimble::rdexp(m, mu, sd)
+vardir <- sqrt(2) * sd^2
+dataExpDouble <- as.data.frame(cbind(y, x1, x2, vardir))
+dataExpDoubleNs <- dataExpDouble
+dataExpDoubleNs$y[c(3, 14, 22, 29, 30)] <- NA
+dataExpDoubleNs$vardir[c(3, 14, 22, 29, 30)] <- NA
 
 
-##Compute Fitted Model
-##y ~ x1 +x2
+## Compute Fitted Model
+## y ~ x1 +x2
 
 
 ## For data without any nonsampled area
-formula = y ~ x1+x2
-vc = c(1,1,1)
-c = c(0,0,0)
-dat = dataExpDouble[1:10,]
+formula <- y ~ x1 + x2
+vc <- c(1, 1, 1)
+c <- c(0, 0, 0)
+dat <- dataExpDouble[1:10, ]
 
 
 ## Using parameter coef and var.coef
 
-saeHBExpDouble<-ExponentialDouble(formula,coef=c,var.coef=vc,iter.update=10,data=dat)
+saeHBExpDouble <- ExponentialDouble(formula, coef = c, var.coef = vc, iter.update = 10, data = dat)
 
-saeHBExpDouble$Est                                 #Small Area mean Estimates
-saeHBExpDouble$refVar                              #Random effect variance
-saeHBExpDouble$coefficient                         #coefficient
-#Load Library 'coda' to execute the plot
-#autocorr.plot(saeHBExpDouble$plot[[3]]) is used to generate ACF Plot
-#plot(saeHBExpDouble$plot[[3]]) is used to generate Density and trace plot
+saeHBExpDouble$Est # Small Area mean Estimates
+saeHBExpDouble$refVar # Random effect variance
+saeHBExpDouble$coefficient # coefficient
+# Load Library 'coda' to execute the plot
+# autocorr.plot(saeHBExpDouble$plot[[3]]) is used to generate ACF Plot
+# plot(saeHBExpDouble$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-saeHBExpDouble <- ExponentialDouble(formula,data=dataExpDouble)
+saeHBExpDouble <- ExponentialDouble(formula, data = dataExpDouble)
 
 
 
 ## For data with nonsampled area use dataExpDoubleNs
-
 }
 }

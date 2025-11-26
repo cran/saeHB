@@ -47,51 +47,53 @@ This function is implemented to variable of interest \eqn{(y)} that assumed to b
 }
 \examples{
 \donttest{
-##Data Generation
+## Data Generation
 set.seed(123)
-m=30
-x=runif(m,0,1)
-b0=b1=0.5
-u=rnorm(m,0,1)
-Mu=exp(b0+b1*x+u)
-k=rgamma(m,2,1)
-lambda=Mu/gamma(1+1/k)
-y=rweibull(m,k,lambda)
-MU=lambda*gamma(1+1/k)
-vardir=lambda^2*(gamma(1+2/k)-(gamma(1+1/k))^2)
-dataWeibull=as.data.frame(cbind(y,x,vardir))
-dataWeibullNs=dataWeibull
-dataWeibullNs$y[c(3,14,22,29,30)] <- NA
-dataWeibullNs$vardir[c(3,14,22,29,30)] <- NA
+m <- 30
+x <- runif(m, 0, 1)
+b0 <- b1 <- 0.5
+u <- rnorm(m, 0, 1)
+Mu <- exp(b0 + b1 * x + u)
+k <- rgamma(m, 2, 1)
+lambda <- Mu / gamma(1 + 1 / k)
+y <- rweibull(m, k, lambda)
+MU <- lambda * gamma(1 + 1 / k)
+vardir <- lambda^2 * (gamma(1 + 2 / k) - (gamma(1 + 1 / k))^2)
+dataWeibull <- as.data.frame(cbind(y, x, vardir))
+dataWeibullNs <- dataWeibull
+dataWeibullNs$y[c(3, 14, 22, 29, 30)] <- NA
+dataWeibullNs$vardir[c(3, 14, 22, 29, 30)] <- NA
 
 
-##Compute Fitted Model
-##y ~ x
+## Compute Fitted Model
+## y ~ x
 
 
 ## For data without any nonsampled area
 
-formula = y ~ x
-var.coef = c(1,1)
-coef = c(0,0)
+formula <- y ~ x
+var.coef <- c(1, 1)
+coef <- c(0, 0)
 
 
 ## Using parameter coef and var.coef
-saeHBWeibull <- Weibull(formula,coef=coef,var.coef=var.coef,iter.update=10,data=dataWeibull)
+saeHBWeibull <- Weibull(
+  formula, coef = coef, var.coef = var.coef,
+ iter.update = 10, data = dataWeibull
+)
 
-saeHBWeibull$Est                                 #Small Area mean Estimates
-saeHBWeibull$refVar                              #Random effect variance
-saeHBWeibull$coefficient                         #coefficient
-#Load Library 'coda' to execute the plot
-#autocorr.plot(saeHBWeibull$plot[[3]]) is used to generate ACF Plot
-#plot(saeHBWeibull$plot[[3]]) is used to generate Density and trace plot
+saeHBWeibull$Est # Small Area mean Estimates
+saeHBWeibull$refVar # Random effect variance
+saeHBWeibull$coefficient # coefficient
+# Load Library 'coda' to execute the plot
+# autocorr.plot(saeHBWeibull$plot[[3]]) is used to generate ACF Plot
+# plot(saeHBWeibull$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-saeHBWeibull <- Weibull(formula, data=dataWeibull)
+saeHBWeibull <- Weibull(formula, data = dataWeibull)
 
 
 
 ## For data with nonsampled area use dataWeibullNs
-
 }
 }

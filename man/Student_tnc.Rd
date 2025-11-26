@@ -47,52 +47,51 @@ This function is implemented to variable of interest \eqn{(y)} that assumed to b
 }
 \examples{
 \donttest{
-##Data Generation
+## Data Generation
 set.seed(123)
-m=30
-x1=runif(m,1,100)
-x2=runif(m,10,15)
-b0=b1=b2=0.5
-u=rnorm(m,0,1)
-MU=b0+b1*x1+b2*x2+u
-k=rgamma(1,10,1)
-y=rt(m,k,MU)
-vardir=k/(k-1)
-vardir=sd(y)^2
-datatnc=as.data.frame(cbind(y,x1,x2,vardir))
-datatncNs=datatnc
-datatncNs$y[c(3,14,22,29,30)] <- NA
-datatncNs$vardir[c(3,14,22,29,30)] <- NA
+m <- 30
+x1 <- runif(m, 1, 100)
+x2 <- runif(m, 10, 15)
+b0 <- b1 <- b2 <- 0.5
+u <- rnorm(m, 0, 1)
+MU <- b0 + b1 * x1 + b2 * x2 + u
+k <- rgamma(1, 10, 1)
+y <- rt(m, k, MU)
+vardir <- k / (k - 1)
+vardir <- sd(y)^2
+datatnc <- as.data.frame(cbind(y, x1, x2, vardir))
+datatncNs <- datatnc
+datatncNs$y[c(3, 14, 22, 29, 30)] <- NA
+datatncNs$vardir[c(3, 14, 22, 29, 30)] <- NA
 
 
-##Compute Fitted Model
-##y ~ x1 +x2
+## Compute Fitted Model
+## y ~ x1 +x2
 
 
 ## For data without any nonsampled area
 
-#formula =  y ~ x1+x2
-v = c(1,1,1)
-c = c(0,0,0)
-dat =   datatnc
+formula <- y ~ x1+x2
+v <- c(1, 1, 1)
+c <- c(0, 0, 0)
+dat <- datatnc
 
 
 ## Using parameter coef and var.coef
-saeHBtnc <- Student_tnc(formula,coef=c, var.coef=v,iter.update=10, data = dat)
+saeHBtnc <- Student_tnc(formula, coef = c, var.coef = v, iter.update = 10, data = dat)
 
-saeHBtnc$Est                                 #Small Area mean Estimates
-saeHBtnc$refVar                              #Random effect variance
-saeHBtnc$coefficient                         #coefficient
-#Load Library 'coda' to execute the plot
-#autocorr.plot(saeHBtnc$plot[[3]]) is used to generate ACF Plot
-#plot(saeHBtnc$plot[[3]]) is used to generate Density and trace plot
+saeHBtnc$Est # Small Area mean Estimates
+saeHBtnc$refVar # Random effect variance
+saeHBtnc$coefficient # coefficient
+# Load Library 'coda' to execute the plot
+# autocorr.plot(saeHBtnc$plot[[3]]) is used to generate ACF Plot
+# plot(saeHBtnc$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-saeHBtnc <- Student_tnc(formula,data =  datatnc)
+saeHBtnc <- Student_tnc(formula, data = datatnc)
 
 
 
 ## For data with nonsampled area use datatncNs
-
 }
 }

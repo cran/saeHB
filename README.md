@@ -14,3 +14,4 @@ Provides several functions for area level of small area estimation using hierarc
 
   - Rao, J.N.K & Molina. (2015). Small Area Estimation 2nd Edition. New
     York: John Wiley and Sons, Inc.
+# saeHB

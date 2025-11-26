@@ -47,51 +47,50 @@ This function is implemented to variable of interest \eqn{(y)} that assumed to b
 }
 \examples{
 \donttest{
-##Data Generation
+## Data Generation
 set.seed(123)
-m=30
-x1=runif(m,10,20)
-x2=runif(m,30,50)
-b0=b1=b2=0.5
-u=rnorm(m,0,1)
-MU=b0+b1*x1+b2*x2+u
-k=rgamma(1,10,1)
-y=rt(m,k,MU)
-vardir=k/(k-1)
-vardir=sd(y)^2
-datat=as.data.frame(cbind(y,x1,x2,vardir))
-datatNs=datat
-datatNs$y[c(3,14,22,29,30)] <- NA
-datatNs$vardir[c(3,14,22,29,30)] <- NA
+m <- 30
+x1 <- runif(m, 10, 20)
+x2 <- runif(m, 30, 50)
+b0 <- b1 <- b2 <- 0.5
+u <- rnorm(m, 0, 1)
+MU <- b0 + b1 * x1 + b2 * x2 + u
+k <- rgamma(1, 10, 1)
+y <- rt(m, k, MU)
+vardir <- k / (k - 1)
+vardir <- sd(y)^2
+datat <- as.data.frame(cbind(y, x1, x2, vardir))
+datatNs <- datat
+datatNs$y[c(3, 14, 22, 29, 30)] <- NA
+datatNs$vardir[c(3, 14, 22, 29, 30)] <- NA
 
 
-##Compute Fitted Model
-##y ~ x1 +x2
+## Compute Fitted Model
+## y ~ x1 +x2
 
 
 ## For data without any nonsampled area
 
-formula =  y ~ x1+x2
-var.coef = c(1,1,1)
-coef = c(0,0,0)
+formula <- y ~ x1 + x2
+var.coef <- c(1, 1, 1)
+coef <- c(0, 0, 0)
 
 
 ## Using parameter coef and var.coef
-saeHBt <- Student_t(formula,coef=coef,var.coef=var.coef,iter.update=10,data = datat)
+saeHBt <- Student_t(formula, coef = coef, var.coef = var.coef, iter.update = 10, data = datat)
 
-saeHBt$Est                                 #Small Area mean Estimates
-saeHBt$refVar                              #Random effect variance
-saeHBt$coefficient                         #coefficient
-#Load Library 'coda' to execute the plot
-#autocorr.plot(saeHBt$plot[[3]]) is used to generate ACF Plot
-#plot(saeHBt$plot[[3]]) is used to generate Density and trace plot
+saeHBt$Est # Small Area mean Estimates
+saeHBt$refVar # Random effect variance
+saeHBt$coefficient # coefficient
+# Load Library 'coda' to execute the plot
+# autocorr.plot(saeHBt$plot[[3]]) is used to generate ACF Plot
+# plot(saeHBt$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-saeHBt <- Student_t(formula,data = datat)
+saeHBt <- Student_t(formula, data = datat)
 
 
 
 ## For data with nonsampled area use datatNs
-
 }
 }

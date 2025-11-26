@@ -47,50 +47,49 @@ This function is implemented to variable of interest \eqn{(y)} that assumed to b
 }
 \examples{
 \donttest{
-##Data Generation
+## Data Generation
 set.seed(123)
-m=30
-x1=runif(m,0,1)
-x2=runif(m,1,2)
-x3=runif(m,2,3)
-b0=b1=b2=b3=0.5
-u=rnorm(m,0,1)
-Mu=b0 + b1*x1+b2*x2+b3*x3+u
-sig=sqrt(1/rgamma(m,1,1))
-y=rlogis(m,Mu,sig)
-vardir=1/3*pi*sig^2
-dataLogistic=as.data.frame(cbind(y,x1,x2,x3,vardir))
-dataLogisticNs=dataLogistic
-dataLogisticNs$y[c(3,14,22,29,30)] <- NA
-dataLogisticNs$vardir[c(3,14,22,29,30)] <- NA
+m <- 30
+x1 <- runif(m, 0, 1)
+x2 <- runif(m, 1, 2)
+x3 <- runif(m, 2, 3)
+b0 <- b1 <- b2 <- b3 <- 0.5
+u <- rnorm(m, 0, 1)
+Mu <- b0 + b1 * x1 + b2 * x2 + b3 * x3 + u
+sig <- sqrt(1 / rgamma(m, 1, 1))
+y <- rlogis(m, Mu, sig)
+vardir <- 1 / 3 * pi * sig^2
+dataLogistic <- as.data.frame(cbind(y, x1, x2, x3, vardir))
+dataLogisticNs <- dataLogistic
+dataLogisticNs$y[c(3, 14, 22, 29, 30)] <- NA
+dataLogisticNs$vardir[c(3, 14, 22, 29, 30)] <- NA
 
 
-##Compute Fitted Model
-##y ~ x1 +x2 +x3
+## Compute Fitted Model
+## y ~ x1 +x2 +x3
 
 
 ## For data without any nonsampled area
-formula = y ~ x1 +x2 +x3
-v = c(1,1,1,1)
-c = c(0,0,0,0)
+formula <- y ~ x1 + x2 + x3
+v <- c(1, 1, 1, 1)
+c <- c(0, 0, 0, 0)
 
 
 ## Using parameter coef and var.coef
-saeHBLogistic <- Logistic(formula,coef=c,var.coef=v,iter.update=10,data =dataLogistic)
+saeHBLogistic <- Logistic(formula, coef = c, var.coef = v, iter.update = 10, data = dataLogistic)
 
-saeHBLogistic$Est                                 #Small Area mean Estimates
-saeHBLogistic$refVar                              #Random effect variance
-saeHBLogistic$coefficient                         #coefficient
-#Load Library 'coda' to execute the plot
-#autocorr.plot(saeHBLogistic$plot[[3]]) is used to generate ACF Plot
-#plot(saeHBLogistic$plot[[3]]) is used to generate Density and trace plot
+saeHBLogistic$Est # Small Area mean Estimates
+saeHBLogistic$refVar # Random effect variance
+saeHBLogistic$coefficient # coefficient
+# Load Library 'coda' to execute the plot
+# autocorr.plot(saeHBLogistic$plot[[3]]) is used to generate ACF Plot
+# plot(saeHBLogistic$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-saeHBLogistic <- Logistic(formula,data =dataLogistic)
+saeHBLogistic <- Logistic(formula, data = dataLogistic)
 
 
 
 ## For data with nonsampled area use dataLogisticNs
-
 }
 }

@@ -49,55 +49,57 @@ This function returns a list of the following objects:
 This function is implemented to variable of interest \eqn{(y)} that assumed to be a Binomial Distribution using Logit normal model. The data is an accumulation from the Bernoulli process which there are exactly two mutually exclusive outcomes of a case.
 }
 \examples{
-
 \donttest{
-#Data Generation
+# Data Generation
 set.seed(123)
-m=30
-x1=runif(m,0,1)
-x2=runif(m,0,1)
-b0=b1=b2=0.5
-u=rnorm(m,0,1)
-n.samp1=round(runif(m,10,30))
-mu= exp(b0 + b1*x1+b2*x2+u)/(1+exp(b0 + b1*x1+b2*x2+u))
-y=rbinom(m,n.samp1,mu)
-vardir=n.samp1*mu*(1-mu)
-dataBinomial=as.data.frame(cbind(y,x1,x2,n.samp=n.samp1,vardir))
-dataBinomialNs = dataBinomial
-dataBinomialNs$y[c(3,14,22,29,30)] <- NA
-dataBinomialNs$vardir[c(3,14,22,29,30)] <- NA
-dataBinomialNs$n.samp[c(3,14,22,29,30)] <- NA
+m <- 30
+x1 <- runif(m, 0, 1)
+x2 <- runif(m, 0, 1)
+b0 <- b1 <- b2 <- 0.5
+u <- rnorm(m, 0, 1)
+n.samp1 <- round(runif(m, 10, 30))
+m <- exp(b0 + b1 * x1 + b2 * x2 + u)
+mu <- m / (1 + m)
+y <- rbinom(m, n.samp1, mu)
+vardir <- n.samp1 * mu * (1 - mu)
+dataBinomial <- as.data.frame(cbind(y, x1, x2, n.samp = n.samp1, vardir))
+dataBinomialNs <- dataBinomial
+dataBinomialNs$y[c(3, 14, 22, 29, 30)] <- NA
+dataBinomialNs$vardir[c(3, 14, 22, 29, 30)] <- NA
+dataBinomialNs$n.samp[c(3, 14, 22, 29, 30)] <- NA
 
 
-##Compute Fitted Model
-##y~x1+x2
+## Compute Fitted Model
+## y~x1+x2
 
 
 ## For data without any nonsampled area
-formula = y~x1+x2
-n.s = "n.samp"
-vc = c(1,1,1)
-c = c(0,0,0)
-dat = dataBinomial
+formula <- y~x1 + x2
+n.s <- "n.samp"
+vc <- c(1, 1, 1)
+c <- c(0, 0, 0)
+dat <- dataBinomial
 
 
 ## Using parameter coef and var.coef
-saeHBBinomial<-Binomial(formula,n.samp=n.s,iter.update=10,coef=c,var.coef=vc,data =dat)
+saeHBBinomial <- Binomial(
+  formula, n.samp = n.s, iter.update = 10,
+  coef = c, var.coef = vc, data = dat
+)
 
-saeHBBinomial$Est                                 #Small Area mean Estimates
-saeHBBinomial$refVar                              #Random effect variance
-saeHBBinomial$coefficient                         #coefficient
-#Load Library 'coda' to execute the plot
-#autocorr.plot(saeHBBinomial$plot[[3]]) is used to generate ACF Plot
-#plot(saeHBBinomial$plot[[3]]) is used to generate Density and trace plot
+saeHBBinomial$Est # Small Area mean Estimates
+saeHBBinomial$refVar # Random effect variance
+saeHBBinomial$coefficient # coefficient
+# Load Library 'coda' to execute the plot
+# autocorr.plot(saeHBBinomial$plot[[3]]) is used to generate ACF Plot
+# plot(saeHBBinomial$plot[[3]]) is used to generate Density and trace plot
 
 ## Do not using parameter coef and var.coef
-saeHBBinomial <- Binomial(formula,n.samp ="n.samp",data=dataBinomial)
+saeHBBinomial <- Binomial(formula, n.samp = "n.samp", data = dataBinomial)
 
 
 
 ## For data with nonsampled area use dataBinomialNs
-
 }
 }
 \author{
